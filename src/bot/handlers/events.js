@@ -16,7 +16,7 @@ function EventHandler(Lia) {
             const event = require(`../events/${file}`);
             let eventName = file.split(".")[0];
 
-            Lia.on(eventName, event.bind(null, Astro));
+            Lia.on(eventName, event.bind(null, Lia));
             delete require.cache[require.resolve(`../events/${file}`)];
         });
     });
