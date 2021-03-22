@@ -5,7 +5,7 @@ module.exports.run = async (Lia, message, args, prefix, errors) => {
         .setColor(Lia.Color)
         .setTitle("Lia - Help")
         .setDescription(`Hello <@${message.author.id}>, I am Lia a multipurpose bot created by [Tea Cup#9999](https://theteacup.dev/)`)
-        .addField("Commands", `**\`${prefix}Help\` - This command**`)
+        .addField("Commands", `**\`${prefix}Help\` - This command**\n**\`${prefix}Rank\` - Get a users rank card**\n**\`${prefix}Settings\` - Change this servers configuration**`)
     return message.channel.send(response);
 
 }

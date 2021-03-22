@@ -7,7 +7,7 @@ module.exports.run = async (Lia, message, args, prefix, errors) => {
             console.log(
                 `[ Lia ] (Bot) Found an error while loading guild data in message.js.\n${err.stack}`
             );
-            error = true;
+            return errors.mainError(message, "Database Error");
         }
         if (object) {
             object = JSON.parse(object);
