@@ -10,6 +10,8 @@ module.exports = async (Lia, message) => {
         return undefined;
     }
 
+    require("../handlers/ranking")(Lia, message);
+
     let Prefix = "-";
 
     if (message.content === `<@!${Lia.user.id}>`) {
