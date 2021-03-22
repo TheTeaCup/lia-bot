@@ -8,7 +8,6 @@ async function Rank(Lia, message) {
     let messageAdd = +1;
 
     await Lia.redis.get(`user-${user}-guild-${server}`, function(err, object) {
-        console.log(object);
 
         if (err) {
             return console.log(
@@ -26,14 +25,14 @@ async function Rank(Lia, message) {
                 level: 0,
                 message: messageAdd,
                 warns: 0,
-                avatarURL: message.author.avatarURL()
+                avatarURL: message.author.avatarURL({ format: "jpg" })
             };
             Lia.redis.set(`user-${user}-guild-${server}`, JSON.stringify(data));
         } else {
             // old user
             object = JSON.parse(object);
 
-            object.avatarURL = message.author.avatarURL();
+            object.avatarURL = message.author.avatarURL({ format: "jpg" });
             object.xp =  object.xp + xpAdd;
             object.message = object.message + messageAdd;
             object.username = message.author.username;
@@ -43,7 +42,8 @@ async function Rank(Lia, message) {
             if (object.xp >= nxtlvl) {
                 object.level = object.level + 1
 
-                // send rank card or something lmao
+                // send rank card
+                require("./rankCard")(Lia, message, object);
 
             }
 
